@@ -55,8 +55,9 @@ router.get("/:id", (req, res) => {
 // POST /pokemon - receive the name of a pokemon and add it to the database
 router.post("/", (req, res) => {
   // creates the pokemon in my database, gives it the name of req.body.name, which is its name
+  console.log(req.body)
   db.pokemon
-    .create({
+    .findOrCreate({
       name: req.body.name,
     })
     .then((poke) => {

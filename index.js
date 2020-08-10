@@ -1,4 +1,3 @@
-// variables for the the packages
 require("dotenv").config();
 const express = require("express");
 const axios = require("axios");
@@ -18,7 +17,7 @@ app.use(express.static("public"));
 
 
 // GET - main index of site
-app.get("/", function (req, res) {
+app.get("/", (req, res) => {
   let pokemonUrl = "http://pokeapi.co/api/v2/pokemon?limit=151>/";
   // Use request to call the API
   axios.get(pokemonUrl).then((response) => {
