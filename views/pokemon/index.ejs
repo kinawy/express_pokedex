@@ -4,17 +4,16 @@
     <a href="/">Back to Pokedex</a>
   </p>
 
-  <% pokemon.forEach(pokemon => { %>
+  <% pokemon.forEach(p => { %>
   <div class="buttons">
-    <h2><%= pokemon.name %></h2>
-    <form method="GET" action="/pokemon">
-      <input hidden type="text" name="name" value="<%= pokemon.name %>" />
-      <a class="btn btn-primary" href="/pokemon/<%= pokemon.id %>"
-        >More Details</a
-      >
-    </form>
-    <form action="/pokemon/<%= pokemon.id %> " method="POST">
-    <input hidden type="submit" name="id" value="Delete">
+    <h2><%= p.name %></h2>
+    <a class="btn btn-primary" href="/pokemon/<%= p.id %>"
+      >More Details</a
+    >
+
+    <form method="POST" action="/pokemon/<%= p.id %>?_method=DELETE">
+      <input hidden type="text" id="id" value="<%= p.name %>" />
+      <button class="btn btn-primary" type="submit">Delete Favorite</button>
     </form>
   </div>
   <% }); %>

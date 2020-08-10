@@ -60,7 +60,7 @@ router.post("/", (req, res) => {
   // creates the pokemon in my database, gives it the name of req.body.name, which is its name
   console.log(req.body);
   db.pokemon
-    .findOrCreate({
+    .create({
       name: req.body.name,
     })
     .then((poke) => {
@@ -78,8 +78,7 @@ router.delete("/:id", (req, res) => {
         id: req.params.id,
       },
     })
-    .then((poke) => {
-      console.log("Deleted " + poke.name + " from favorites.");
+    .then(() => {
       // then redirects to the favorites page again
       res.redirect("/pokemon");
     })
