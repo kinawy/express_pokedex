@@ -48,7 +48,7 @@ router.get("/:id", (req, res) => {
         });
     })
     .catch((error) => {
-      console.log(error);
+      console.log("Error" ,error);
     });
 });
 
