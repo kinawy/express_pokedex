@@ -13,6 +13,9 @@
         >More Details</a
       >
     </form>
+    <form action="/pokemon/<%= pokemon.id %> " method="POST">
+    <input hidden type="submit" name="id" value="Delete">
+    </form>
   </div>
   <% }); %>
 </div>

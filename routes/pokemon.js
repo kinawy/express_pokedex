@@ -10,10 +10,16 @@ const db = require("../models");
 // GET /pokemon - return a page with favorited Pokemon
 router.get("/", (req, res) => {
   // get the records from my database, render to view
-  db.pokemon.findAll().then((poke) => {
-    // render my index.ejs page from my pokemon folder inside views, assign the pokemon to a pokemon object, // this is my favorites page
-    res.render("pokemon/index", { pokemon: poke });
-  });
+  db.pokemon
+    .findAll()
+    .then((poke) => {
+      // render my index.ejs page from my pokemon folder inside views, assign the pokemon to a pokemon object, // this is my favorites page
+      res.render("pokemon/index", { pokemon: poke });
+    })
+    .catch((error) => {
+      console.log("Error", error);
+      res.render("Error");
+    });
 });
 
 // this one renders my show page, where I have a little crappy pokemon card
@@ -64,12 +70,12 @@ router.post("/", (req, res) => {
     });
 });
 
-router.delete("/", (req, res) => {
+router.delete("/:id", (req, res) => {
   // uses the destroy function to remove a pokemon from my database, not working though
   db.pokemon
     .destroy({
       where: {
-        name: req.body.name,
+        id: req.params.id,
       },
     })
     .then((poke) => {
