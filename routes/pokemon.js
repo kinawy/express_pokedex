@@ -7,9 +7,6 @@ const axios = require("axios");
 // variable for my models aka database in psql
 const db = require("../models");
 
-
-
-
 // GET /pokemon - return a page with favorited Pokemon
 router.get("/", (req, res) => {
   // get the records from my database, render to view
@@ -48,14 +45,14 @@ router.get("/:id", (req, res) => {
         });
     })
     .catch((error) => {
-      console.log("Error" ,error);
+      console.log("Error", error);
     });
 });
 
 // POST /pokemon - receive the name of a pokemon and add it to the database
 router.post("/", (req, res) => {
   // creates the pokemon in my database, gives it the name of req.body.name, which is its name
-  console.log(req.body)
+  console.log(req.body);
   db.pokemon
     .findOrCreate({
       name: req.body.name,
@@ -67,12 +64,12 @@ router.post("/", (req, res) => {
     });
 });
 
-router.delete("/:id", (req, res) => {
+router.delete("/", (req, res) => {
   // uses the destroy function to remove a pokemon from my database, not working though
   db.pokemon
     .destroy({
       where: {
-        id: req.params.id,
+        name: req.body.name,
       },
     })
     .then((poke) => {
